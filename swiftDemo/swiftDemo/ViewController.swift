@@ -12,6 +12,20 @@ class ViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        //https://chuansongme.com/api/1/account/read01?start=0
+        //https://chuansongme.com/api/1/essays/recent
+        let request = NSURLRequest(URL: NSURL(string: "https://chuansongme.com/api/1/essays/recent")!);
+        let task = NSURLSession .sharedSession().dataTaskWithRequest(request) { (data, response, error) in
+//            print(NSString(data: data!, encoding: NSUTF8StringEncoding))
+            self.printme(data!);
+        }
+        task .resume();
+        
+    }
+    
+    func printme (data :NSData) {
+        print(NSString(data: data, encoding: NSUTF8StringEncoding))
+    
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,9 +45,12 @@ class ViewController: UITableViewController {
         cell?.textLabel!.text = "hahah";
         return cell!;
     }
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
     }
+    
+    
 
 
 }
